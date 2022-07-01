@@ -1,4 +1,13 @@
+<div class="my-2">
+  <span>{{storeName}}</span>
+</div>
+
 <div>
   <input type="text" placeholder="Enter the value" [(ngModel)]="value">
   <button class="btn btn-primary" (click)="onAdd()">Add to counter</button>
+</div>
+
+<div class="my-2">
+  <input type="text" placeholder="Enter name to change" [(ngModel)]="name">
+  <button class="btn btn-secondary" (click)="onChangeName()">Change app name</button>
 </div>
