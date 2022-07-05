@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8">
     <table class="table table-striped">
       <thead>
         <th>Id</th>
@@ -14,5 +14,13 @@
         </tr>
       </tbody>
     </table>
+
+    <button  class="btn btn-primary" [routerLink]="['/posts/add']">
+      Add post
+    </button>
+  </div>
+
+  <div class="col-md-4">
+    <router-outlet></router-outlet>
   </div>
 </div>
