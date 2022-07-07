@@ -5,12 +5,16 @@
         <th>Id</th>
         <th>Title</th>
         <th>Description</th>
+        <th>Action</th>
       </thead>
       <tbody *ngIf="(posts$ | async) as postsData">
         <tr *ngFor="let post of postsData">
           <td>{{post.id}}</td>
           <td>{{post.title}}</td>
           <td>{{post.description}}</td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="[ 'edit', post.id]">Update Post</button>
+          </td>
         </tr>
       </tbody>
     </table>

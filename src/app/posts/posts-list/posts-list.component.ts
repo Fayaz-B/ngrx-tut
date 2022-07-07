@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/posts.models';
 import { AppState } from 'src/app/state/app.state';
-import { getPosts } from './state/posts.selector';
+import { getPosts } from '../state/posts.selector';
 
 @Component({
   selector: 'app-posts-list',
@@ -17,5 +17,6 @@ export class PostsListComponent implements OnInit {
   ngOnInit(): void {
     this.posts$ = this.store.select(getPosts)
   }
+
 
 }
