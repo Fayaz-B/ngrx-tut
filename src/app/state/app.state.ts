@@ -1,3 +1,4 @@
+import { ActionReducer } from '@ngrx/store';
 import { counterReducer } from '../counter/state/counter.reducer';
 import { CounterState } from '../counter/state/counter.state';
 import { postsReducer } from '../posts/posts-list/state/posts.reducer';

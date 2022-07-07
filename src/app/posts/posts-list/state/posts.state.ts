@@ -6,7 +6,7 @@ export interface PostsState {
 }
 
 
-export const initialState = {
+export const initialState: PostsState = {
   posts: [
     {
       id: '1',
