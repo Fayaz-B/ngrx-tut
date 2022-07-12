@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Post } from 'src/app/models/posts.models';
 import { AppState } from 'src/app/state/app.state';
+import { updatePost } from '../state/posts.action';
 import { getPostsById } from '../state/posts.selector';
 
 @Component({
@@ -13,17 +14,19 @@ import { getPostsById } from '../state/posts.selector';
 })
 export class EditPostComponent implements OnInit {
   updatePostForm!: FormGroup;
+  id: string = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      const id = params.id;
+      this.id = params.id;
 
-      this.store.select(getPostsById(id)).subscribe((post) => {
+      this.store.select(getPostsById(this.id)).subscribe((post) => {
         
         if(post) {
           this.createForm(post);
@@ -40,6 +43,17 @@ export class EditPostComponent implements OnInit {
   }
 
   updatePost() {
+    if(this.updatePostForm.invalid) {
+      return
+    }
+    const post: Post = {
+      id: this.id,
+      title: this.updatePostForm.get('title')?.value,
+      description: this.updatePostForm.get('description')?.value
+    }
+
+    this.store.dispatch(updatePost({post}))
+    this.router.navigate(['/posts'])
 
   }
 
